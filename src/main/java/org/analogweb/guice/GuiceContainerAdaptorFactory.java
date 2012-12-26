@@ -1,10 +1,10 @@
 package org.analogweb.guice;
 
-import javax.servlet.ServletContext;
-
-
+import org.analogweb.ApplicationContextResolver;
 import org.analogweb.ContainerAdaptorFactory;
 import org.analogweb.util.Assertion;
+
+import com.google.inject.Injector;
 
 /**
  * {@link GuiceContainerAdaptor}のインスタンスを生成するファクトリです。
@@ -13,9 +13,13 @@ import org.analogweb.util.Assertion;
 public class GuiceContainerAdaptorFactory implements ContainerAdaptorFactory<GuiceContainerAdaptor> {
 
     @Override
-    public GuiceContainerAdaptor createContainerAdaptor(ServletContext servletContext) {
-        Assertion.notNull(servletContext, ServletContext.class.getName());
-        return new GuiceContainerAdaptor(servletContext);
+    public GuiceContainerAdaptor createContainerAdaptor(ApplicationContextResolver resolver) {
+        Assertion.notNull(resolver, ApplicationContextResolver.class.getName());
+        Injector injector = resolver.resolve(Injector.class, Injector.class.getName());
+        if (injector == null) {
+            return null;
+        }
+        return new GuiceContainerAdaptor(injector);
     }
 
 }

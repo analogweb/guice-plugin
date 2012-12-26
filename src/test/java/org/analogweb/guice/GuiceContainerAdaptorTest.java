@@ -1,25 +1,23 @@
 package org.analogweb.guice;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
+import static org.hamcrest.core.IsInstanceOf.instanceOf;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
+import java.util.Collection;
 import java.util.List;
 
-import javax.servlet.ServletContext;
-
-import org.analogweb.guice.GuiceContainerAdaptor;
+import org.analogweb.exception.AssertionFailureException;
+import org.hamcrest.BaseMatcher;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.ConfigurationException;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.multibindings.Multibinder;
@@ -33,7 +31,6 @@ public class GuiceContainerAdaptorTest {
     public ExpectedException thrown = ExpectedException.none();
 
     private GuiceContainerAdaptor adaptor;
-    private ServletContext servletContext;
     private Injector injector;
 
     /**
@@ -41,8 +38,6 @@ public class GuiceContainerAdaptorTest {
      */
     @Before
     public void setUp() throws Exception {
-        servletContext = mock(ServletContext.class);
-        adaptor = new GuiceContainerAdaptor(servletContext);
         injector = Guice.createInjector(new AbstractModule() {
             @Override
             protected void configure() {
@@ -54,61 +49,59 @@ public class GuiceContainerAdaptorTest {
                 bind(Baa.class).to(BaaImpl.class);
             }
         });
+        adaptor = new GuiceContainerAdaptor(injector);
     }
 
     @Test
     public void testGetInstanceOfType() {
-        injector = Guice.createInjector(new AbstractModule() {
-            @Override
-            protected void configure() {
-                bind(Foo.class).to(FooImpl.class);
-                bind(Baa.class).to(BaaImpl.class);
-            }
-        });
-        when(servletContext.getAttribute(Injector.class.getName())).thenReturn(injector);
-
         Foo foo = adaptor.getInstanceOfType(Foo.class);
-        assertTrue(foo instanceof FooImpl);
+        assertThat(foo, instanceOf(FooImpl.class));
         Baa baa = adaptor.getInstanceOfType(Baa.class);
-        assertTrue(baa instanceof BaaImpl);
-    }
-
-    @Test
-    public void testGetInstanceOfTypeWithNotBindingType() {
-        thrown.expect(ConfigurationException.class);
-        when(servletContext.getAttribute(Injector.class.getName())).thenReturn(injector);
-
-        adaptor.getInstanceOfType(Baz.class);
+        assertThat(baa, instanceOf(BaaImpl.class));
+        Baz baz = adaptor.getInstanceOfType(Baz.class);
+        assertThat(baz, is(nullValue()));
     }
 
     @Test
     public void testGetInstanceOfTypeWithoutInjector() {
-        when(servletContext.getAttribute(Injector.class.getName())).thenReturn(null);
-
-        assertNull(adaptor.getInstanceOfType(Foo.class));
-        assertNull(adaptor.getInstanceOfType(Baa.class));
-        assertNull(adaptor.getInstanceOfType(Baz.class));
+        thrown.expect(AssertionFailureException.class);
+        adaptor = new GuiceContainerAdaptor(null);
     }
 
     @Test
-    public void testGetInstancesOfTypeWithoutInjector() {
-        when(servletContext.getAttribute(Injector.class.getName())).thenReturn(null);
-
-        assertTrue(adaptor.getInstancesOfType(Foo.class).isEmpty());
-        assertTrue(adaptor.getInstancesOfType(Baa.class).isEmpty());
-        assertTrue(adaptor.getInstancesOfType(Baz.class).isEmpty());
-    }
-
-    @Test
+    @SuppressWarnings("unchecked")
     public void testGetInstancesOfType() {
-        when(servletContext.getAttribute(Injector.class.getName())).thenReturn(injector);
-
         List<Foo> foo = adaptor.getInstancesOfType(Foo.class);
 
         assertThat(foo.size(), is(2));
-        assertTrue(foo.get(0) instanceof Foo);
-        assertTrue(foo.get(1) instanceof Foo);
-        assertFalse(foo.get(0).getClass().equals(foo.get(1).getClass()));
+        assertThat(foo.get(0), instanceOf(Foo.class));
+        assertThat(foo.get(1), instanceOf(Foo.class));
+
+        List<Baa> baa = adaptor.getInstancesOfType(Baa.class);
+        assertThat(baa.size(), is(1));
+        assertThat(baa.get(0), instanceOf(BaaImpl.class));
+
+        List<Baz> baz = adaptor.getInstancesOfType(Baz.class);
+        assertThat(baz, is(emptyCollection()));
+    }
+
+    @SuppressWarnings("rawtypes")
+    private static Matcher emptyCollection() {
+        return new BaseMatcher<List<?>>() {
+            @Override
+            public boolean matches(Object arg0) {
+                if (arg0 instanceof Collection) {
+                    Collection<?> c = (Collection<?>) arg0;
+                    return c.isEmpty();
+                }
+                return false;
+            }
+
+            @Override
+            public void describeTo(Description arg0) {
+
+            }
+        };
     }
 
     private static interface Foo {
@@ -127,7 +120,6 @@ public class GuiceContainerAdaptorTest {
     }
 
     private static interface Baz {
-
     }
 
 }
