@@ -57,8 +57,7 @@
 					<docencoding>UTF-8</docencoding>
 					<charset>UTF-8</charset>
 					<links>
-						<link>http://java.sun.com/javase/ja/6/docs/ja/api/</link>
-						<link>http://docs.oracle.com/javaee/6/api/</link>
+						<link>http://docs.oracle.com/javase/6/docs/api/</link>
 						<link>http://google-guice.googlecode.com/svn/trunk/javadoc</link>
 					</links>
 				</configuration>
@@ -76,10 +75,6 @@
 			<artifactId>guice</artifactId>
 			<version>3.0</version>
 			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.google.inject.extensions</groupId>
