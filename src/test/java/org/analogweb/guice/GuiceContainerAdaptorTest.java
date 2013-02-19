@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 import java.util.Collection;
 import java.util.List;
 
-import org.analogweb.exception.AssertionFailureException;
+import org.analogweb.core.AssertionFailureException;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
