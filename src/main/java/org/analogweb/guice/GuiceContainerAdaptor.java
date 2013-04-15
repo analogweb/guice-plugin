@@ -1,6 +1,7 @@
 package org.analogweb.guice;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.analogweb.ContainerAdaptor;
@@ -51,7 +52,7 @@ public class GuiceContainerAdaptor implements ContainerAdaptor {
         }
         log.log(GuicePluginModulesConfig.PLUGIN_MESSAGE_RESOURCE, "DGB000001", type, typeInstances,
                 injector);
-        return typeInstances;
+        return Collections.unmodifiableList(typeInstances);
     }
 
     private <T> List<Binding<T>> findBindings(Class<T> type, Injector injector) {
@@ -62,5 +63,4 @@ public class GuiceContainerAdaptor implements ContainerAdaptor {
     protected Injector getInjector() {
         return this.injector;
     }
-
 }
