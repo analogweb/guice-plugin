@@ -69,12 +69,13 @@
 			<groupId>org.analogweb</groupId>
 			<artifactId>analogweb-core</artifactId>
 			<version>0.8.0</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.inject</groupId>
 			<artifactId>guice</artifactId>
 			<version>3.0</version>
-			<optional>true</optional>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.inject.extensions</groupId>
