@@ -21,7 +21,7 @@
 	<groupId>org.analogweb</groupId>
 	<artifactId>analogweb-guice</artifactId>
 	<packaging>jar</packaging>
-	<version>0.8.1-SNAPSHOT</version>
+	<version>0.8.1</version>
 	<name>analogweb-guice</name>
 	<issueManagement />
 	<ciManagement />
@@ -68,7 +68,7 @@
 		<dependency>
 			<groupId>org.analogweb</groupId>
 			<artifactId>analogweb-core</artifactId>
-			<version>0.8.1-SNAPSHOT</version>
+			<version>0.8.1</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
