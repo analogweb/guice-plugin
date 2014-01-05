@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import org.analogweb.ApplicationContextResolver;
+import org.analogweb.ApplicationContext;
 import org.analogweb.core.AssertionFailureException;
 import org.junit.Before;
 import org.junit.Rule;
@@ -23,7 +23,7 @@ import com.google.inject.Injector;
 public class GuiceContainerAdaptorFactoryTest {
 
     private GuiceContainerAdaptorFactory factory;
-    private ApplicationContextResolver resolver;
+    private ApplicationContext context;
     private Injector injector;
 
     @Rule
@@ -32,23 +32,23 @@ public class GuiceContainerAdaptorFactoryTest {
     @Before
     public void setUp() throws Exception {
         factory = new GuiceContainerAdaptorFactory();
-        resolver = mock(ApplicationContextResolver.class);
+        context = mock(ApplicationContext.class);
         injector = mock(Injector.class);
     }
 
     @Test
     public void testCreateContainerAdaptor() {
-        when(resolver.resolve(Injector.class, Injector.class.getName())).thenReturn(injector);
-        GuiceContainerAdaptor containerAdaptor = factory.createContainerAdaptor(resolver);
+        when(context.getAttribute(Injector.class, Injector.class.getName())).thenReturn(injector);
+        GuiceContainerAdaptor containerAdaptor = factory.createContainerAdaptor(context);
         assertThat(containerAdaptor, is(not(nullValue())));
-        GuiceContainerAdaptor other = factory.createContainerAdaptor(resolver);
+        GuiceContainerAdaptor other = factory.createContainerAdaptor(context);
         assertThat(containerAdaptor, is(not(sameInstance(other))));
     }
 
     @Test
     public void testCreateContainerAdaptorWithoutInjector() {
-        when(resolver.resolve(Injector.class, Injector.class.getName())).thenReturn(null);
-        GuiceContainerAdaptor containerAdaptor = factory.createContainerAdaptor(resolver);
+        when(context.getAttribute(Injector.class, Injector.class.getName())).thenReturn(null);
+        GuiceContainerAdaptor containerAdaptor = factory.createContainerAdaptor(context);
         assertThat(containerAdaptor, is(nullValue()));
     }
 

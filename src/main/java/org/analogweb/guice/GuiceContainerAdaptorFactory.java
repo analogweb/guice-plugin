@@ -1,6 +1,6 @@
 package org.analogweb.guice;
 
-import org.analogweb.ApplicationContextResolver;
+import org.analogweb.ApplicationContext;
 import org.analogweb.ContainerAdaptorFactory;
 import org.analogweb.util.Assertion;
 
@@ -13,9 +13,9 @@ import com.google.inject.Injector;
 public class GuiceContainerAdaptorFactory implements ContainerAdaptorFactory<GuiceContainerAdaptor> {
 
     @Override
-    public GuiceContainerAdaptor createContainerAdaptor(ApplicationContextResolver resolver) {
-        Assertion.notNull(resolver, ApplicationContextResolver.class.getName());
-        Injector injector = resolver.resolve(Injector.class, Injector.class.getName());
+    public GuiceContainerAdaptor createContainerAdaptor(ApplicationContext context) {
+        Assertion.notNull(context, ApplicationContext.class.getName());
+        Injector injector = context.getAttribute(Injector.class, Injector.class.getName());
         if (injector == null) {
             return null;
         }
