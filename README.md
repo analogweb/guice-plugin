@@ -17,6 +17,11 @@ public class HelloModule {
 ```java
 import java.net.URI;
 import javax.inject.Inject;
+
+import com.google.inject.AbstractModule;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 import org.analogweb.ApplicationContext;
 import org.analogweb.ApplicationProperties;
 import org.analogweb.annotation.Route;
@@ -29,7 +34,7 @@ public class Hello {
 
       public static void main(String... args) {
 
-         injector = Guice.createInjector(new AbstractModule() {
+         Injectori njector = Guice.createInjector(new AbstractModule() {
              @Override
              protected void configure() {
                bind(Hello.class);
