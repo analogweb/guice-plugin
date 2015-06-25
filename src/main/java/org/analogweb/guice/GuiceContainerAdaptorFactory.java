@@ -21,5 +21,4 @@ public class GuiceContainerAdaptorFactory implements ContainerAdaptorFactory<Gui
         }
         return new GuiceContainerAdaptor(injector);
     }
-
 }

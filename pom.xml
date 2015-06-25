@@ -1,5 +1,5 @@
 <!--
-    The MIT Lisence Copyright (c) 2011, Analog Web Framework Development 
+    The MIT Lisence Copyright (c) 2011- 2015 Analog Web Framework Development 
 
 	Team. Permission is hereby granted, free of charge, to any person obtaining 
 	a copy of this software and associated documentation files (the "Software"), 
@@ -21,61 +21,34 @@
 	<groupId>org.analogweb</groupId>
 	<artifactId>analogweb-guice</artifactId>
 	<packaging>jar</packaging>
-	<version>0.8.2-SNAPSHOT</version>
+	<version>0.9.8-SNAPSHOT</version>
 	<name>analogweb-guice</name>
 	<issueManagement />
 	<ciManagement />
 	<inceptionYear>2011</inceptionYear>
 	<contributors />
 	<scm>
+		<url>scm:git:git@github.com:analogweb/guice-plugin.git</url>
 		<connection>scm:git:git@github.com:analogweb/guice-plugin.git</connection>
 		<developerConnection>scm:git:git@github.com:analogweb/guice-plugin.git</developerConnection>
-	</scm>
+      <tag>HEAD</tag>
+  </scm>
 	<parent>
 		<groupId>org.analogweb</groupId>
 		<artifactId>analogweb-parent-modules</artifactId>
-		<version>4</version>
+		<version>9</version>
 		<relativePath />
 	</parent>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.7</version>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<source>1.6</source>
-					<encoding>UTF-8</encoding>
-					<docencoding>UTF-8</docencoding>
-					<charset>UTF-8</charset>
-					<links>
-						<link>http://docs.oracle.com/javase/6/docs/api/</link>
-						<link>http://google-guice.googlecode.com/svn/trunk/javadoc</link>
-					</links>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 	<dependencies>
 		<dependency>
 			<groupId>org.analogweb</groupId>
 			<artifactId>analogweb-core</artifactId>
-			<version>0.8.2-SNAPSHOT</version>
-			<scope>compile</scope>
+			<version>0.9.7</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.inject</groupId>
 			<artifactId>guice</artifactId>
 			<version>3.0</version>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.inject.extensions</groupId>
@@ -88,8 +61,12 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>java-hamcrest</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
+			<artifactId>mockito-core</artifactId>
 		</dependency>
 	</dependencies>
 </project>

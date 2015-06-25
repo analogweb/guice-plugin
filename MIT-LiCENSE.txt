@@ -1,7 +1,7 @@
 
 The MIT Lisence
 
-Copyright (c) 2011, snowgoose.yk
+Copyright (c) 2011 - 2015 Analogweb Developement team. 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

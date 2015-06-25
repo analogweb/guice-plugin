@@ -23,32 +23,31 @@ import com.google.inject.Injector;
 public class GuiceContainerAdaptorFactoryTest {
 
     private GuiceContainerAdaptorFactory factory;
-    private ApplicationContext context;
+    private ApplicationContext resolver;
     private Injector injector;
-
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     @Before
     public void setUp() throws Exception {
         factory = new GuiceContainerAdaptorFactory();
-        context = mock(ApplicationContext.class);
+        resolver = mock(ApplicationContext.class);
         injector = mock(Injector.class);
     }
 
     @Test
     public void testCreateContainerAdaptor() {
-        when(context.getAttribute(Injector.class, Injector.class.getName())).thenReturn(injector);
-        GuiceContainerAdaptor containerAdaptor = factory.createContainerAdaptor(context);
+        when(resolver.getAttribute(Injector.class, Injector.class.getName())).thenReturn(injector);
+        GuiceContainerAdaptor containerAdaptor = factory.createContainerAdaptor(resolver);
         assertThat(containerAdaptor, is(not(nullValue())));
-        GuiceContainerAdaptor other = factory.createContainerAdaptor(context);
+        GuiceContainerAdaptor other = factory.createContainerAdaptor(resolver);
         assertThat(containerAdaptor, is(not(sameInstance(other))));
     }
 
     @Test
     public void testCreateContainerAdaptorWithoutInjector() {
-        when(context.getAttribute(Injector.class, Injector.class.getName())).thenReturn(null);
-        GuiceContainerAdaptor containerAdaptor = factory.createContainerAdaptor(context);
+        when(resolver.getAttribute(Injector.class, Injector.class.getName())).thenReturn(null);
+        GuiceContainerAdaptor containerAdaptor = factory.createContainerAdaptor(resolver);
         assertThat(containerAdaptor, is(nullValue()));
     }
 
@@ -57,5 +56,4 @@ public class GuiceContainerAdaptorFactoryTest {
         thrown.expect(AssertionFailureException.class);
         factory.createContainerAdaptor(null);
     }
-
 }
