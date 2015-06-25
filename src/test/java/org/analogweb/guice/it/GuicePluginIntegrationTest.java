@@ -5,10 +5,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.analogweb.ApplicationContext;
 import org.analogweb.ApplicationProperties;
-import org.analogweb.core.DefaultApplicationContext;
 import org.analogweb.core.DefaultApplicationProperties;
 import org.analogweb.core.fake.FakeApplication;
 import org.analogweb.core.fake.ResponseResult;
+import org.analogweb.guice.GuiceApplicationContext;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,12 +30,11 @@ public class GuicePluginIntegrationTest {
 				bind(TestModule.class);
 			}
 		});
-		ApplicationContext context = DefaultApplicationContext.context(
-				Injector.class.getName(), injector);
+		ApplicationContext context = GuiceApplicationContext.context(injector);
 		ApplicationProperties props = DefaultApplicationProperties
 				.properties(GuicePluginIntegrationTest.class.getPackage()
 						.getName());
-		app = new FakeApplication(context,props);
+		app = new FakeApplication(context, props);
 	}
 
 	@Test
