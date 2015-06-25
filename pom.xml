@@ -68,5 +68,12 @@
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.analogweb</groupId>
+			<artifactId>analogweb-core</artifactId>
+			<version>0.9.7</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 </project>
