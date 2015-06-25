@@ -34,7 +34,7 @@ public class Hello {
 
       public static void main(String... args) {
 
-         Injectori injector = Guice.createInjector(new AbstractModule() {
+         Injector injector = Guice.createInjector(new AbstractModule() {
              @Override
              protected void configure() {
                bind(Hello.class);
