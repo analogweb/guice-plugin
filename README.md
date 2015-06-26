@@ -4,7 +4,7 @@ Analog Web Framework
 [Guice](https://github.com/google/guice) application working with AnalogWeb's Router. 
 
 ```java
-public class HelloModule {
+public class SayHello {
 
    public String sayHello() {
       return "Hello!";
@@ -38,21 +38,21 @@ public class Hello {
              @Override
              protected void configure() {
                bind(Hello.class);
-               bind(HelloModule.class);
+               bind(SayHello.class);
              }
          });
          ApplicationContext context = GuiceApplicationContext.context(injector);
          ApplicationProperties props = DefaultApplicationProperties
                                      .properties(Hello.class.getPackage().getName());
-         Servers.create(URI,create("http://localhost:8080"),props,context).run();
+         Servers.create(URI.create("http://localhost:8080"),props,context).run();
       }
 
       @Inject
-      private HelloModule module;
+      private SayHello service;
 
       @Route
       public String hello() {
-         return module.sayHello();
+         return service.sayHello();
       }
 }
 ```
