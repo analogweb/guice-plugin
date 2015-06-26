@@ -31,29 +31,32 @@
 		<url>scm:git:git@github.com:analogweb/guice-plugin.git</url>
 		<connection>scm:git:git@github.com:analogweb/guice-plugin.git</connection>
 		<developerConnection>scm:git:git@github.com:analogweb/guice-plugin.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+    </scm>
 	<parent>
 		<groupId>org.analogweb</groupId>
 		<artifactId>analogweb-parent-modules</artifactId>
 		<version>9</version>
 		<relativePath />
 	</parent>
+	<properties>
+		<analogweb.version>0.9.7</analogweb.version>
+		<guice.version>4.0</guice.version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.analogweb</groupId>
 			<artifactId>analogweb-core</artifactId>
-			<version>0.9.7</version>
+            <version>${analogweb.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.inject</groupId>
 			<artifactId>guice</artifactId>
-			<version>3.0</version>
+            <version>${guice.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.inject.extensions</groupId>
 			<artifactId>guice-multibindings</artifactId>
-			<version>3.0</version>
+            <version>${guice.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -71,7 +74,7 @@
 		<dependency>
 			<groupId>org.analogweb</groupId>
 			<artifactId>analogweb-core</artifactId>
-			<version>0.9.7</version>
+            <version>${analogweb.version}</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
