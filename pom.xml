@@ -40,14 +40,13 @@
 		<relativePath />
 	</parent>
 	<properties>
-		<analogweb.version>0.9.9-SNAPSHOT</analogweb.version>
 		<guice.version>4.0</guice.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.analogweb</groupId>
 			<artifactId>analogweb-core</artifactId>
-            <version>0.9.10</version>
+            <version>0.9.11</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.inject</groupId>
@@ -75,7 +74,7 @@
 		<dependency>
 			<groupId>org.analogweb</groupId>
 			<artifactId>analogweb-core</artifactId>
-            <version>0.9.10</version>
+            <version>0.9.11</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
