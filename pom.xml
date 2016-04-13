@@ -31,8 +31,7 @@
 		<url>scm:git:git@github.com:analogweb/guice-plugin.git</url>
 		<connection>scm:git:git@github.com:analogweb/guice-plugin.git</connection>
 		<developerConnection>scm:git:git@github.com:analogweb/guice-plugin.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+    </scm>
 	<parent>
 		<groupId>org.analogweb</groupId>
 		<artifactId>analogweb-parent-modules</artifactId>
@@ -46,7 +45,7 @@
 		<dependency>
 			<groupId>org.analogweb</groupId>
 			<artifactId>analogweb-core</artifactId>
-            <version>0.9.11</version>
+            <version>0.9.12</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.inject</groupId>
@@ -74,7 +73,7 @@
 		<dependency>
 			<groupId>org.analogweb</groupId>
 			<artifactId>analogweb-core</artifactId>
-            <version>0.9.11</version>
+            <version>0.9.12</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
