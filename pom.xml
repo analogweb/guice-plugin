@@ -1,5 +1,5 @@
 <!--
-    The MIT Lisence Copyright (c) 2011- 2015 Analog Web Framework Development 
+    The MIT Lisence Copyright (c) 2011- 2017 Analog Web Framework Development 
 
 	Team. Permission is hereby granted, free of charge, to any person obtaining 
 	a copy of this software and associated documentation files (the "Software"), 
@@ -21,7 +21,7 @@
 	<groupId>org.analogweb</groupId>
 	<artifactId>analogweb-guice</artifactId>
 	<packaging>jar</packaging>
-	<version>0.9.13-SNAPSHOT</version>
+	<version>0.10.1-SNAPSHOT</version>
 	<name>analogweb-guice</name>
 	<issueManagement />
 	<ciManagement />
@@ -36,17 +36,18 @@
 	<parent>
 		<groupId>org.analogweb</groupId>
 		<artifactId>analogweb-parent-modules</artifactId>
-		<version>10</version>
+		<version>15</version>
 		<relativePath />
 	</parent>
 	<properties>
-		<guice.version>4.0</guice.version>
+		<guice.version>4.1.0</guice.version>
+        <analogweb.version>0.10.1-SNAPSHOT</analogweb.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.analogweb</groupId>
 			<artifactId>analogweb-core</artifactId>
-            <version>0.9.12</version>
+            <version>${analogweb.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.inject</groupId>
@@ -74,7 +75,7 @@
 		<dependency>
 			<groupId>org.analogweb</groupId>
 			<artifactId>analogweb-core</artifactId>
-            <version>0.9.12</version>
+            <version>${analogweb.version}</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
